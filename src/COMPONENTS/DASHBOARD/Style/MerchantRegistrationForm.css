@@ -1,0 +1,99 @@
+.merchant-registration-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.merchant-registration-modal {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 80%;
+  max-width: 700px;
+  position: relative;
+}
+
+.merchant-registration-modal h2 {
+  color: #1e3a8a;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.merchant-registration-modal p {
+  margin-bottom: 20px;
+  color: #374151;
+}
+
+.merchant-registration-modal .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.merchant-registration-modal .form-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.merchant-registration-modal input[type="text"],
+.merchant-registration-modal input[type="email"] {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.merchant-registration-modal .checkbox-group {
+  margin-bottom: 15px;
+  color: #374151;
+}
+
+.merchant-registration-modal .checkbox-group label {
+  display: flex;
+  align-items: center;
+}
+
+.merchant-registration-modal .checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.merchant-registration-modal .submit-button {
+  background-color: #1a202c;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  cursor: pointer;
+  width: 100%;
+}
+
+.merchant-registration-modal .submit-button:hover {
+  background-color: #2d3748;
+}
+
+.merchant-registration-modal .terms {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #4a5568;
+  text-align: center;
+}
+
+.merchant-registration-modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #718096;
+}

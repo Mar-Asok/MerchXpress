@@ -1,0 +1,232 @@
+.merchant-home-page-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f3f4f6; /* Light grey background */
+}
+
+.merchant-home-page-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 250px; /* Width of the sidebar, keeps content to the right */
+  margin-right: auto; /* Centers the content horizontally */
+  margin-left: auto; /* Centers the content horizontally */
+  max-width: 1200px; /* Optional: Maximum width of the content area */
+  width: 100%; /* Take up available width */
+}
+
+.merchant-header {
+  background-color: #fff; /* White header */
+  padding: 15px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.merchant-header-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #374151; /* Dark grey text */
+}
+
+.merchant-main-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.sales-chart-card, .balance-card, .info-card {
+  background-color: #fff; /* White cards */
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Styles for Sales Chart Card */
+.sales-chart-card {
+  background-color: #e0f7fa; /* Light cyan/blue */
+  color: #00695c; /* Teal text */
+}
+
+.chart-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.monthly-selector {
+  padding: 8px 12px;
+  border: 1px solid #80cbc4; /* Teal border */
+  border-radius: 5px;
+  cursor: pointer;
+  color: #00695c;
+  background-color: white;
+}
+
+.chart-area {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.chart-summary {
+  font-size: 0.9em;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px 20px;
+  align-items: center;
+  color: #00695c;
+}
+
+.total-sales, .earnings {
+  font-weight: bold;
+}
+
+.sales-count {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.chart-summary > div:nth-child(odd) {
+  justify-self: start;
+}
+
+.chart-summary > div:nth-child(even) {
+  justify-self: end;
+}
+
+.earnings {
+  grid-column: 1 / -1;
+  text-align: left;
+  margin-top: 15px;
+  border-top: 1px solid #b2dfdb; /* Light teal border */
+  padding-top: 10px;
+}
+
+/* Styles for Balance Card */
+.balance-card {
+  text-align: center;
+}
+
+.balance-header {
+  font-size: 1.1em;
+  color: #4b5563; /* Medium grey */
+  margin-bottom: 10px;
+}
+
+.balance-amount {
+  font-size: 2em;
+  font-weight: bold;
+  color: #1e88e5; /* Blue */
+  margin-bottom: 15px;
+}
+
+.withdraw-button {
+  background-color: #1e88e5; /* Blue button */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+.withdraw-button:hover {
+  background-color: #1565c0; /* Darker blue */
+}
+
+/* Styles for Info Cards */
+.info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.info-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #1e88e5; /* Blue */
+}
+
+.info-icon img {
+  max-width: 100%;
+  height: auto;
+}
+
+.info-value {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #374151; /* Dark grey */
+  margin-bottom: 5px;
+}
+
+.info-label {
+  color: #4b5563; /* Medium grey */
+  font-size: 0.9em;
+}
+
+.sold-products-card .info-icon {
+  color: #43a047; /* Green */
+}
+
+.new-orders-card .info-icon {
+  color: #7b1fa2; /* Purple */
+}
+
+.merchant-home-page-with-sidebar {
+  display: flex;
+}
+
+.merchant-home-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 250px; /* Keep sidebar space */
+  margin-right: auto; /* Center horizontally */
+  margin-left: auto; /* Center horizontally */
+  max-width: 1200px; /* Optional max width */
+  width: 100%;
+}
+
+/* ... other styles ... */
+
+.sales-chart-card {
+  background-color: #e0f7fa; /* Light cyan/blue */
+  color: #00695c; /* Teal text */
+  position: relative; /* For absolute positioning of labels */
+}
+
+.chart-area {
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative; /* For positioning month labels */
+}
+
+.chart-labels {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.chart-summary {
+  font-size: 0.9em;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px 20px;
+  align-items: center;
+  color: #00695c;
+}
+
+.total-sales-label, .earnings-label {
+  font-weight: bold;
+}
+
+/* ... other styles ... */

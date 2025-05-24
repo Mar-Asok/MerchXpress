@@ -1,0 +1,152 @@
+/* OrderStatus.css */
+
+.order-status-container {
+  padding: 24px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.order-status-wrapper {
+  max-width: 64rem;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+.header-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  background-color: #bbf7d0;
+  border-radius: 8px 8px 0 0;
+}
+
+.header-cell {
+  text-align: center;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Order Row Styles */
+.orders-container {
+  border-top: 1px solid #f3f4f6;
+}
+
+.order-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+.order-row:hover {
+  background-color: #f9fafb;
+}
+
+.order-cell {
+  display: flex;
+  align-items: center;
+}
+
+/* Order and Quantity Styling */
+.order-info, .quantity-info {
+  background-color: #dbeafe;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: #1e40af;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+/* Status Dropdown Styling */
+.status-dropdown {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 2px solid;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.status-dropdown:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Status Color Classes */
+.status-completed {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.status-in-transit {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.status-to-ship {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.status-default {
+  background-color: #f3f4f6;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+/* Summary Footer */
+.summary-footer {
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 0 0 8px 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.summary-text {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order-status-container {
+    padding: 16px;
+  }
+  
+  .header-grid,
+  .order-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .header-cell {
+    padding: 8px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .header-cell:last-child {
+    border-bottom: none;
+  }
+  
+  .order-cell {
+    margin-bottom: 8px;
+  }
+  
+  .order-info, .quantity-info, .status-dropdown {
+    margin-bottom: 4px;
+  }
+}

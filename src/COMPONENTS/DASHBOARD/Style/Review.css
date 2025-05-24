@@ -1,0 +1,406 @@
+/* Review.css */
+
+.review-container {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Decorative Circles */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.bg-circle-1 {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  bottom: 50px;
+  left: -50px;
+}
+
+.bg-circle-2 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  top: -100px;
+  right: -100px;
+}
+
+.bg-circle-3 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  bottom: 200px;
+  right: 100px;
+}
+
+/* Main Content */
+.review-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-header {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.review-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Statistics Cards */
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e5e7eb;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 5px;
+}
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.star {
+  color: #fbbf24;
+  font-size: 16px;
+}
+
+/* Rating Bars */
+.rating-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.rating-number {
+  color: #6b7280;
+  width: 10px;
+}
+
+.bar-container {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #fbbf24;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Scrollable Content */
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Reviews List */
+.reviews-list {
+  padding: 20px;
+}
+
+.review-item {
+  display: flex;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.review-avatar {
+  width: 60px;
+  height: 60px;
+  background: #94a3b8;
+  border-radius: 8px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.review-details {
+  flex: 1;
+}
+
+.review-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.buyer-info {
+  flex: 1;
+}
+
+.buyer-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.product-name {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.total-price {
+  font-size: 14px;
+  color: #059669;
+  font-weight: 500;
+}
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.review-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.review-text {
+  color: #374151;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* Submit Review Form */
+.submit-review-section {
+  padding: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.submit-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.review-form {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid #e5e7eb;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.required {
+  color: #dc2626;
+}
+
+.rating-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e5e7eb;
+}
+
+.interactive-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.interactive-star {
+  font-size: 24px;
+  color: #d1d5db;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.interactive-star:hover,
+.interactive-star.active {
+  color: #fbbf24;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f8fafc;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f8fafc;
+  min-height: 100px;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.submit-button {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  float: right;
+  transition: background-color 0.2s ease;
+}
+
+.submit-button:hover {
+  background: #4f46e5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .review-container {
+    padding: 15px;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .review-item {
+    flex-direction: column;
+  }
+  
+  .review-avatar {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .review-header-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .bg-circle {
+    display: none;
+  }
+}

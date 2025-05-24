@@ -1,0 +1,77 @@
+/* Styles for the merchant sidebar */
+.merchant-sidebar-style {
+  width: 250px;
+  background: linear-gradient(to bottom right, #7dd3fc, #6366f1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure it's at least viewport height */
+  z-index: 1000;
+  overflow-y: auto;
+  align-items: stretch; /* Make children take full width */
+}
+
+.merchant-sidebar-style .sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: auto; /* Push header to the top */
+  color: white;
+}
+
+.merchant-sidebar-style .sidebar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black; /* Or white, depending on your preference */
+}
+
+.merchant-sidebar-style .merchant-label {
+  font-size: 0.9em;
+}
+
+.merchant-sidebar-style .menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* flex-grow: 1; Remove this */
+}
+
+.merchant-sidebar-style .menu-list li {
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  padding: 0.75rem 0; /* Slightly more padding */
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.merchant-sidebar-style .menu-list li:hover {
+  background-color: #95baf5;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.merchant-sidebar-style .sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto; /* Push footer to the bottom */
+}
+
+.merchant-sidebar-style .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.merchant-sidebar-style .btn.black {
+  background: #000;
+  color: #fff;
+}

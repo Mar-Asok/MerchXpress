@@ -1,0 +1,115 @@
+/* Hamburger Sidebar Styling with Fixed Positioning */
+.sidebar {
+  position: fixed; /* Make it follow scroll */
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh; /* Changed from 111vh to 100vh for proper viewport height */
+  background: linear-gradient(to bottom right, #7dd3fc, #6366f1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  z-index: 9999; /* High z-index to stay above other content */
+  overflow-y: auto; /* Allow scrolling within sidebar if needed */
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.back-arrow {
+  margin-right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  position: relative;   /* enable offset positioning */
+  top: -100%;            /* move 4px upward */
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-list li:hover {
+  background-color: #95baf5;  /* light gray highlight */
+  color: #000;                /* optional: text color change */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+}
+
+.btn {
+  position: relative;
+  top: -70px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn.black {
+  background: #000;
+  color: #fff;
+}
+
+/* Add at the bottom of existing hamburger.css */
+.slide-in {
+  animation: slideIn 0.3s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100vw;
+  }
+}

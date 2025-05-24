@@ -1,0 +1,218 @@
+/* Home Page Styling */
+
+.home-wrapper {
+  display: flex;
+  position: relative;
+  height: 100vh;
+}
+
+.home-container {
+  flex-grow: 1;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  padding: 0 2rem;
+  transition: margin-left 0.3s ease;
+  position: relative;
+  z-index: 2; /* Ensure home container is above the transaction background */
+}
+
+.menu-active {
+  margin-left: 250px; /* width of sidebar */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+}
+
+/* Fixed logo and hamburger in top left */
+.fixed-header-left {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 2000;
+}
+
+.fixed-header-left .hamburger-icon {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.fixed-header-left .logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Right-aligned navbar */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.nav-links a.active {
+  color: #3B82F6;
+}
+
+.nav-links input {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-btn {
+  margin-left: 8px;
+  background: #7b3bff;
+  color: white;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Hero section */
+.hero {
+  margin-top: 3rem;
+  text-align: center;
+  position: relative; /* Add this */
+  z-index: 10; /* Ensure hero content is above the circles */
+}
+
+.hero h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 11;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 11;
+}
+
+.line-deco {
+  height: 10px;
+  width: 60%;
+  margin: 1rem auto;
+  background: linear-gradient(to right, #7b3bff, #60A5FA);
+  border-radius: 10px;
+  position: relative;
+  z-index: 11;
+}
+
+.description {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  position: relative;
+  z-index: 11;
+}
+
+.join {
+  margin-top: 2rem;
+  font-weight: bold;
+  position: relative;
+  z-index: 11;
+}
+
+.join a {
+  color: #fbfcff;
+  text-decoration: none;
+  position: relative;
+  z-index: 11;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .search-btn {
+    display: none;
+  }
+}
+
+.blue-circle,
+.blue-circle-gradient,
+.small-circle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1; /* Ensure circles are below the hero content */
+}
+
+.blue-circle {
+  background-color: #6366F1;
+}
+
+.blue-circle.bottom-left {
+  width: 256px;
+  height: 256px;
+  bottom: -64px;
+  left: -64px;
+  /* Adjusted to potentially reduce overlap */
+  left: -80px;
+  bottom: -80px;
+}
+
+.blue-circle-gradient.bottom-left-large {
+  width: 384px;
+  height: 384px;
+  bottom: -128px;
+  left: -128px;
+  /* Adjusted to potentially reduce overlap */
+  width: 320px;
+  height: 320px;
+  bottom: -100px;
+  left: -100px;
+}
+
+.small-circle.top-right-small {
+  width: 64px;
+  height: 64px;
+  top: 25%;
+  right: 5%;
+  background: linear-gradient(135deg, #4ADE80, #3B82F6);
+}
+
+.small-circle.bottom-right-small {
+  width: 80px;
+  height: 80px;
+  bottom: 25%;
+  right: 25%;
+  background: linear-gradient(135deg, #60A5FA, #6366F1);
+}
+
+.small-circle.left-center {
+  width: 128px;
+  height: 128px;
+  top: 33%;
+  left: 5%;
+  background: linear-gradient(135deg, #93C5FD, #6366F1);
+}

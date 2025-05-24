@@ -1,0 +1,15 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50; /* Green for success */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.notification.error {
+  background-color: #f44336; /* Red for error */
+}

@@ -1,0 +1,83 @@
+/* COMPONENTS/DASHBOARD/Pages/CartPage.css */
+.cart-page {
+  padding: 20px;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 40px 0;
+  color: #777;
+}
+
+.cart-items-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+.item-name {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.item-price {
+  color: green;
+}
+
+.item-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.item-quantity button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.item-total {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.remove-item {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.cart-summary {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 1.2em;
+}
+
+.checkout-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-left: 20px;
+}

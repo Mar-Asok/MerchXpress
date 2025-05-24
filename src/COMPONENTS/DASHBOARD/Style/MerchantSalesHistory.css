@@ -1,0 +1,96 @@
+.sales-history-similar-page {
+  padding: 20px;
+  background-color: #f4f6f8;
+}
+
+.sales-history-similar-page h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sales-table-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.sales-table-header, .sale-row {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.sales-table-header {
+  background-color: #e9f7ff;
+  font-weight: bold;
+  color: #337ab7;
+}
+
+.sales-table-header li {
+  flex: 1;
+  text-align: left;
+}
+
+.sales-table-body .sale-row:last-child {
+  border-bottom: none;
+}
+
+.sale-row > div, .sale-row > span {
+  flex: 1;
+  text-align: left;
+}
+
+.sale-row .product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sale-row .product-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sale-row .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.status-pill.shipped {
+  background-color: #a21caf; /* Similar purple */
+}
+
+.sales-history-page-with-sidebar {
+  display: flex;
+}
+
+.sales-history-content {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 250px; /* Keep sidebar space */
+  margin-right: auto; /* Center horizontally */
+  margin-left: auto; /* Center horizontally */
+  max-width: 1200px; /* Optional max width */
+  width: 100%;
+}
+
+/* Keep the rest of your existing CSS */
+
+/* Keep the rest of your existing CSS */
+
+/* Add more status colors as needed */

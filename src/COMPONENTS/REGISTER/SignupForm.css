@@ -1,0 +1,191 @@
+/* Background & circles */
+.signup-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blue-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.blue-circle.top-right {
+  top: 50px;
+  right: 50px;
+  width: 200px;
+  height: 200px;
+}
+
+.blue-circle.bottom-left {
+  bottom: 50px;
+  left: 50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.blue-circle-gradient.bottom-left-large {
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  border-radius: 50%;
+}
+
+.small-circle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.small-circle.top-right-small {
+  top: 100px;
+  right: 200px;
+}
+
+.small-circle.bottom-right-small {
+  bottom: 100px;
+  right: 100px;
+  width: 20px;
+  height: 20px;
+}
+
+.small-circle.left-center {
+  left: 100px;
+  top: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+/* Form container */
+.form-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Heading */
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e1e1e1;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #667eea;
+}
+
+/* Password group */
+.password-group {
+  position: relative;
+}
+
+.eye-button {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}
+
+.eye-button:hover {
+  color: #333;
+}
+
+/* Account text */
+.account-text {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.link-login {
+  color: #667eea;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-login:hover {
+  text-decoration: underline;
+}
+
+/* Action button */
+.action-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Status messages */
+.status-message {
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.status-message.error {
+  color: #e74c3c;
+}
+
+.status-message.success {
+  color: #27ae60;
+}

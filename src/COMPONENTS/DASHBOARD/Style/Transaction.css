@@ -1,0 +1,280 @@
+/* Transaction.css */
+
+.transaction-container {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Decorative Circles */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.bg-circle-1 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  top: 20px;
+  left: 20px;
+}
+
+.bg-circle-2 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  top: 120px;
+  right: 100px;
+}
+
+.bg-circle-3 {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  bottom: 100px;
+  right: 50px;
+}
+
+.bg-circle-4 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  bottom: 200px;
+  left: 80px;
+}
+
+/* Main Content */
+.transaction-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.transaction-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.header-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 50%;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.transaction-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Transaction List */
+.transaction-list {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transaction-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.transaction-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Product Image */
+.product-image {
+  width: 60px;
+  height: 60px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid #e5e7eb;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-placeholder {
+  font-size: 24px;
+  color: #9ca3af;
+}
+
+/* Transaction Details */
+.transaction-details {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.seller-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.transaction-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.info-label {
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.info-value {
+  color: #1f2937;
+}
+
+.price-value {
+  color: #059669;
+  font-weight: 600;
+}
+
+.total-amount {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.date-value {
+  color: #6b7280;
+}
+
+/* Pause/Action Button */
+.action-button {
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.action-button:hover {
+  background: #374151;
+}
+
+.pause-icon {
+  width: 12px;
+  height: 16px;
+  background: white;
+  position: relative;
+}
+
+.pause-icon::before,
+.pause-icon::after {
+  content: '';
+  position: absolute;
+  background: #1f2937;
+  width: 3px;
+  height: 16px;
+  top: 0;
+}
+
+.pause-icon::before {
+  left: 2px;
+}
+
+.pause-icon::after {
+  right: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .transaction-container {
+    padding: 15px;
+  }
+  
+  .transaction-header {
+    margin-bottom: 20px;
+  }
+  
+  .header-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .transaction-title {
+    font-size: 24px;
+  }
+  
+  .transaction-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+  
+  .product-image {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+  
+  .transaction-details {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .transaction-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .bg-circle {
+    display: none;
+  }
+}

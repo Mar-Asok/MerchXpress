@@ -1,0 +1,124 @@
+.products-similar-page {
+  padding: 20px;
+  background-color: #f4f6f8;
+}
+
+.products-similar-page h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.products-table-card {
+  background-color: #e0f7fa; /* Light blue background */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.products-table-header, .product-row {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.products-table-header {
+  color: #1e88e5; /* Blue header text */
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #b3e5fc;
+}
+
+.products-table-header li {
+  flex: 1;
+  text-align: left;
+}
+
+.products-table-body .product-row {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.products-table-body .product-row:last-child {
+  margin-bottom: 0;
+}
+
+.product-row > div, .product-row > span {
+  flex: 1;
+  text-align: left;
+}
+
+.product-row .product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-row .product-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  background-color: #3f51b5; /* Placeholder blue color */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-row .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-row .status {
+  text-align: left;
+}
+
+.status-select {
+  background-color: #ffeb3b; /* Yellow status */
+  color: #333;
+  padding: 8px 15px;
+  border-radius: 6px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.add-product-button-area {
+  padding-top: 20px;
+  text-align: left;
+}
+
+.add-product-button {
+  background-color: #2196f3; /* Blue add button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.add-product-button i {
+  margin-right: 5px;
+}
+
+.products-page-with-sidebar {
+  display: flex;
+}
+
+.products-content {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 250px; /* Keep sidebar space */
+  margin-right: auto; /* Center horizontally */
+  margin-left: auto; /* Center horizontally */
+  max-width: 1200px; /* Optional max width */
+  width: 100%;
+}
+
+/* Keep the rest of your existing CSS */
+
+/* Keep the rest of your existing CSS */

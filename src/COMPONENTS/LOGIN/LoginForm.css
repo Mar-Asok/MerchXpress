@@ -1,0 +1,167 @@
+/* LOGIN styles only */
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.blue-circle, .blue-circle-gradient, .small-circle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.blue-circle {
+  background-color: #6366F1;
+}
+
+.blue-circle.top-right {
+  width: 256px;
+  height: 256px;
+  top: -64px;
+  right: -64px;
+}
+
+.blue-circle.bottom-left {
+  width: 256px;
+  height: 256px;
+  bottom: -64px;
+  left: -64px;
+}
+
+.blue-circle-gradient.bottom-left-large {
+  width: 384px;
+  height: 384px;
+  bottom: -128px;
+  left: -128px;
+  background: linear-gradient(135deg, #60A5FA, #6366F1);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.small-circle.top-right-small {
+  width: 64px;
+  height: 64px;
+  top: 25%;
+  right: 25%;
+  background: linear-gradient(135deg, #4ADE80, #3B82F6);
+}
+
+.small-circle.bottom-right-small {
+  width: 80px;
+  height: 80px;
+  bottom: 25%;
+  right: 25%;
+  background: linear-gradient(135deg, #60A5FA, #6366F1);
+}
+
+.small-circle.left-center {
+  width: 128px;
+  height: 128px;
+  top: 33%;
+  left: 25%;
+  background: linear-gradient(135deg, #93C5FD, #6366F1);
+}
+
+.form-container {
+  background-color: white;
+  padding: 32px;
+  border-radius: 32px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  z-index: 2;
+  position: relative;
+  border: 1px solid #E5E7EB;
+}
+
+.form-container h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #111827;
+}
+
+.input-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #6366F1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.password-group {
+  position: relative;
+}
+
+.eye-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+}
+
+.account-text {
+  text-align: center;
+  margin: 16px 0;
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.account-text a {
+  color: #3B82F6;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-button:hover {
+  background-color: #262626;
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: red;
+}

@@ -1,0 +1,489 @@
+/* Market Container */
+.market-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white; /* Default text color to white for better contrast */
+}
+
+/* Market Header */
+.market-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4); /* Slightly stronger shadow */
+}
+
+.market-header h1 {
+  font-size: 3rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.market-header p {
+  font-size: 1.2rem;
+  margin: 0 0 2rem 0;
+  opacity: 0.9;
+}
+
+/* Market Filters */
+.market-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.category-btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.15); /* Slightly more opaque */
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.category-btn:hover {
+  background: rgba(255,255,255,0.25); /* Slightly more opaque on hover */
+  transform: translateY(-2px);
+}
+
+.category-btn.active {
+  background: white;
+  color: #667eea;
+  border-color: white;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* More prominent shadow for active */
+}
+
+.filter-toggles {
+  display: flex;
+  gap: 1rem;
+  background: rgba(255,255,255,0.1); /* Subtle background */
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.featured-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.featured-toggle input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+/* Market Stats */
+.market-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for stats cards */
+  color: white; /* Inherit white color for the main text in the card */
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: white; /* Make the labels white */
+}
+
+/* Stores Grid */
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Store Card */
+.store-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: #333; /* Default text color for store cards */
+}
+
+.store-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.store-card.featured {
+  border: 2px solid #ffd700;
+  box-shadow: 0 10px 30px rgba(255,215,0,0.2);
+}
+
+.store-card.closed {
+  opacity: 0.7;
+  background: #f5f5f5;
+  color: #777; /* Slightly darker text for closed cards */
+}
+
+/* Store Badges */
+.featured-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  color: #333;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.closed-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ff6b6b;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Store Header */
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.store-avatar {
+  position: relative;
+}
+
+.store-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #667eea;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.status-indicator.online {
+  background: #4CAF50;
+}
+
+.status-indicator.offline {
+  background: #f44336;
+}
+
+.store-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #f8f9fa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  color: #555; /* Darker icons */
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+}
+
+.favorite-btn:hover {
+  background: #ffebee;
+  color: #e91e63;
+}
+
+.contact-btn:hover {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+/* Store Info */
+.store-info {
+  margin-bottom: 1.5rem;
+}
+
+.store-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.store-owner {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 0.5rem 0;
+}
+
+.store-category {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.store-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Store Stats */
+.store-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.products-icon {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+}
+
+.rating-icon {
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  color: #333;
+}
+
+.stat-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #333;
+}
+
+.stat-details .stat-label {
+  font-size: 0.75rem;
+  color: #666;
+  opacity: 1;
+}
+
+/* Store Footer */
+.store-footer {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.visit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.visit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.no-results span {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.no-results p {
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .market-container {
+    padding: 1rem;
+  }
+
+  .market-header h1 {
+    font-size: 2rem;
+  }
+
+  .stores-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .market-stats {
+    gap: 1rem;
+  }
+
+  .stat-card {
+    min-width: 100px;
+    padding: 1rem;
+  }
+
+  .category-filters {
+    gap: 0.25rem;
+  }
+
+  .category-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .market-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .market-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+.store-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: #333; /* Default text color for modal */
+}
+
+.store-modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  text-align: left;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #555; /* Darker close button */
+}
+
+.store-actions {
+  margin-top: 1rem;
+}
+
+.store-actions button {
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #333; /* Button text color */
+  background-color: #f0f0f0; /* Light button background */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}

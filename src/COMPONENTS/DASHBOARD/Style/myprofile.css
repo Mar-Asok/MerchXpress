@@ -1,0 +1,82 @@
+.review-container {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Decorative Circles */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.bg-circle-1 {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  bottom: 50px;
+  left: -50px;
+}
+
+.bg-circle-2 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  top: -100px;
+  right: -100px;
+}
+
+.bg-circle-3 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  bottom: 200px;
+  right: 100px;
+}
+/* myprofile.css */
+
+.profile-info {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 1rem;
+  text-align: left;
+  font-size: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-row strong {
+  flex: 0 0 120px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.profile-row input,
+.profile-row select {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #f9fafb;
+}
+
+.profile-row input:focus,
+.profile-row select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(117, 55, 55, 0.2);
+}
