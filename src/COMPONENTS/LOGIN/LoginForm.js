@@ -1,69 +1,91 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 
 function LoginForm({ onLogin, onNavigate }) {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(''); // Can be email or username
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState('');
-  const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
 
-  // Load users from localStorage and prefill username/password from last signup
+  // Configure Axios for CSRF token handling and credentials
+  axios.defaults.withCredentials = true;
+  const API_URL = 'http://localhost:8000'; // Replace with your Laravel backend URL
+
   useEffect(() => {
-    // Load all users from localStorage
-    const savedUsers = JSON.parse(localStorage.getItem('merchXpressUsers') || '[]');
-    setUsers(savedUsers);
-
-    // Prefill username and password from last signup
-    const savedUsername = localStorage.getItem('lastSignedUpUsername');
-    const savedPassword = localStorage.getItem('lastSignedUpPassword');
-
-    if (savedUsername) setUsername(savedUsername);
-    if (savedPassword) setPassword(savedPassword);
-
-    // Clear saved prefill to avoid persistent autofill next time
+    // No need to load users from localStorage anymore, Laravel handles it
+    // Clear any lingering localStorage prefill data
     localStorage.removeItem('lastSignedUpUsername');
-    localStorage.removeItem('lastSignedUpPassword');
+    localStorage.removeItem('lastSignedUp(');
   }, []);
 
-  // Password validation regex same as Signup
   const isValidPassword = (pw) =>
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pw);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    setLoginStatus(''); // Clear previous status
+
     if (!username || !password) {
       setLoginStatus('Please fill in all fields');
       return;
     }
 
     if (!isValidPassword(password)) {
-      setLoginStatus('Invalid password format');
+      setLoginStatus('Invalid password format'); // Or a more generic "Invalid credentials"
       return;
     }
 
-    const user = users.find(u => u.username === username && u.password === password);
-    if (user) {
-      setLoginStatus(`Welcome, ${user.firstName}!`);
-      if (onLogin) onLogin(user);
-      setTimeout(() => {
-        if (onNavigate) {
-          onNavigate('dashboard');
+    try {
+      // 1. Get CSRF cookie first
+      await axios.get(`${API_URL}/sanctum/csrf-cookie`);
+
+      // 2. Send login data
+      const response = await axios.post(`${API_URL}/api/login`, {
+        username, // Sending 'username' which Laravel will attempt to match against username or email
+        password,
+      });
+
+      if (response.status === 204) { // Laravel's default is 204 No Content on success
+        // At this point, the user is authenticated via session cookie
+        // You might want to fetch user details for display or context
+        // >>>>>>>>>> FIX APPLIED HERE <<<<<<<<<<
+        const userResponse = await axios.get(`${API_URL}/api/user`); // Corrected: Added /api/
+        const userData = userResponse.data;
+        setLoginStatus(`Welcome, ${userData.first_name || userData.username}!`);
+        if (onLogin) onLogin(userData); // Pass user data to parent component if needed
+
+        setTimeout(() => {
+          if (onNavigate) {
+            onNavigate('dashboard');
+          } else {
+            navigate('/dashboard');
+          }
+        }, 1000);
+      } else {
+        setLoginStatus('Login failed. Please try again.');
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 422 || error.response.status === 401) { // Validation or Unauthorized
+          setLoginStatus('Invalid username or password');
         } else {
-          navigate('/dashboard');
+          setLoginStatus(`Error: ${error.response.data.message || 'Something went wrong.'}`);
         }
-      }, 1000);
-    } else if (users.length === 0) {
-      setLoginStatus('No accounts found. Please sign up first.');
-    } else {
-      setLoginStatus('Invalid username or password');
+      } else if (error.request) {
+        setLoginStatus('No response from server. Please check your network connection.');
+      } else {
+        setLoginStatus(`Error: ${error.message}`);
+      }
+      console.error('Login error:', error);
     }
   };
 
   return (
     <>
       <style>{`
+        /* Your existing CSS styles */
         .login-page {
           min-height: 100vh;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -233,7 +255,7 @@ function LoginForm({ onLogin, onNavigate }) {
           <div className="input-group">
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Username or Email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 import './SignupForm.css';
 
 function SignupForm() {
@@ -15,13 +16,19 @@ function SignupForm() {
 
   const navigate = useNavigate();
 
+  // Configure Axios for CSRF token handling and credentials
+  axios.defaults.withCredentials = true;
+  const API_URL = 'http://localhost:8000'; // Replace with your Laravel backend URL
+
   const isValidPassword = (pw) =>
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pw);
 
   const isValidEmail = (em) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
+    setSignupStatus(''); // Clear previous status
+
     if (!username || !firstName || !lastName || !email || !password || !confirmPassword) {
       setSignupStatus('Please fill in all fields');
       return;
@@ -42,33 +49,53 @@ function SignupForm() {
       return;
     }
 
-    // Check if username already exists
-    const existingUsers = JSON.parse(localStorage.getItem('merchXpressUsers') || '[]');
-    if (existingUsers.find(user => user.username === username)) {
-      setSignupStatus('Username already exists. Please choose a different username.');
-      return;
+    try {
+      // 1. Get CSRF cookie first (Laravel Sanctum requirement for SPAs)
+      await axios.get(`${API_URL}/sanctum/csrf-cookie`);
+
+      // 2. Send registration data
+      const response = await axios.post(`${API_URL}/api/register`, {
+        firstName,
+        lastName,
+        email,
+        username,
+        password,
+        password_confirmation: confirmPassword, // Laravel requires password_confirmation
+      });
+
+      if (response.status === 204) { // Laravel's default is 204 No Content on success
+        setSignupStatus(`Account created for ${firstName} ${lastName}! Redirecting...`);
+        // Optionally, you might want to fetch user data after registration for display
+        // await axios.get(`${API_URL}/user`); // Example: Fetch authenticated user
+        setTimeout(() => {
+          navigate('/dashboard'); // Navigate to dashboard or wherever your app goes after successful login
+        }, 1500);
+      } else {
+        setSignupStatus('Registration failed. Please try again.');
+      }
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        if (error.response.status === 422) { // Validation errors
+          const errors = error.response.data.errors;
+          let errorMessage = '';
+          for (const key in errors) {
+            errorMessage += errors[key].join(' ') + ' ';
+          }
+          setSignupStatus(errorMessage.trim());
+        } else {
+          setSignupStatus(`Error: ${error.response.data.message || 'Something went wrong.'}`);
+        }
+      } else if (error.request) {
+        // The request was made but no response was received
+        setSignupStatus('No response from server. Please check your network connection.');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        setSignupStatus(`Error: ${error.message}`);
+      }
+      console.error('Signup error:', error);
     }
-
-    // Check if email already exists
-    if (existingUsers.find(user => user.email === email)) {
-      setSignupStatus('Email already registered. Please use a different email.');
-      return;
-    }
-
-    const userData = { username, firstName, lastName, email, password };
-    
-    // Add new user to the users array
-    const updatedUsers = [...existingUsers, userData];
-    localStorage.setItem('merchXpressUsers', JSON.stringify(updatedUsers));
-
-    // Set autofill data for login page
-    localStorage.setItem('lastSignedUpUsername', username);
-    localStorage.setItem('lastSignedUpPassword', password);
-
-    setSignupStatus(`Account created for ${firstName} ${lastName}!`);
-    setTimeout(() => {
-      navigate('/login');
-    }, 1500);
   };
 
   return (
