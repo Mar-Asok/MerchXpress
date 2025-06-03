@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../Style/Navbar.css';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link } from 'react-router-dom';
 
-const Navbar = ({ cartCount }) => { // Receive cartCount as a prop
+// Accept cartCount AND onLogout as props
+const Navbar = ({ cartCount, onLogout }) => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [notifications, setNotifications] = useState([
@@ -130,7 +131,8 @@ const Navbar = ({ cartCount }) => { // Receive cartCount as a prop
     <header className={`header ${!isNavbarVisible ? 'navbar-hidden' : ''}`}>
       <nav className="nav-links">
         <Link to="/dashboard" className="nav-link active">Home</Link>
-        <Link to="/market" className="nav-link">Market</Link>
+        {/* CORRECTED: Link to /dashboard/market */}
+        <Link to="/dashboard/market" className="nav-link">Market</Link>
 
         {/* Notification Dropdown */}
         <div className="notification-container" ref={notificationRef}>
@@ -224,6 +226,13 @@ const Navbar = ({ cartCount }) => { // Receive cartCount as a prop
           />
           <button onClick={handleSearch} className="search-btn">Search</button>
         </div>
+
+        {/* ADDED: Logout Button */}
+        {/* Ensure you have appropriate styling for this button */}
+        <button onClick={onLogout} className="nav-link logout-button">
+          Logout
+        </button>
+
       </nav>
     </header>
   );

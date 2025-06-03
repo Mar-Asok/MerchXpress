@@ -1,41 +1,26 @@
-// COMPONENTS/DASHBOARD/Layout/DashboardLayout.js
-import React, { useState } from 'react';
+// COMPONENTS/DASHBOARD/Layout/DashboardLayout.js (Revised)
+import React, { useState, useEffect } from 'react'; // Added useEffect for console logging
 import Sidebar from '../Sidebar/hamburger';
 import Navbar from '../Navbar/Navbar';
 import '../Style/home.css';
 
-const DashboardLayout = ({ children }) => {
+// Accept onLogout and global cart props from App.js
+const DashboardLayout = ({ children, onLogout, cart, addToCart, removeFromCart, updateCartQuantity }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (product) => {
-    setCartItems(prev => {
-      const existingItem = prev.find(item => item.id === product.id);
-      if (existingItem) {
-        return prev.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        return [...prev, { ...product, quantity: 1 }];
-      }
-    });
+  // No need for local cartItems state and functions here anymore
+  // as they are managed globally in App.js and passed down.
+
+  // Use the global cart to get item count for Navbar
+  const getGlobalCartItemCount = () => {
+    return cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
   };
 
-  const updateCartItemQuantity = (productId, quantity) => {
-    setCartItems(prev =>
-      prev.map(item =>
-        item.id === productId ? { ...item, quantity: Math.max(1, quantity) } : item
-      )
-    );
-  };
+  useEffect(() => {
+    // Optional: Log the received cart to ensure it's coming from App.js
+    console.log("DashboardLayout: Received global cart:", cart);
+  }, [cart]);
 
-  const removeFromCart = (productId) => {
-    setCartItems(prev => prev.filter(item => item.id !== productId));
-  };
-
-  const getCartItemCount = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
 
   return (
     <div className="home-wrapper">
@@ -49,16 +34,20 @@ const DashboardLayout = ({ children }) => {
       )}
 
       <div className={`home-container ${menuOpen ? 'menu-active' : ''}`}>
-        <Navbar cartCount={getCartItemCount()} />
+        {/* Pass onLogout and the global cart count to the Navbar component */}
+        <Navbar cartCount={getGlobalCartItemCount()} onLogout={onLogout} />
+
+        {/* Render the children (the actual page component like Home, Market, etc.) */}
+        {/* Pass global cart functions to children if they need them (e.g., Market component) */}
         {React.Children.map(children, child =>
           React.cloneElement(child, {
-            cart: cartItems,
+            // These props are now the global ones from App.js
+            cart: cart,
             addToCart: addToCart,
-            updateCartItemQuantity: updateCartItemQuantity,
+            updateCartQuantity: updateCartQuantity, // Changed from updateCartItemQuantity to match App.js
             removeFromCart: removeFromCart,
           })
         )}
-        {/* Removed conditional rendering of CartPage */}
       </div>
     </div>
   );

@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 
 function LoginForm({ onLogin, onNavigate }) {
-  const [username, setUsername] = useState(''); // Can be email or username
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState('');
 
   const navigate = useNavigate();
 
-  // Configure Axios for CSRF token handling and credentials
-  axios.defaults.withCredentials = true;
-  const API_URL = 'http://localhost:8000'; // Replace with your Laravel backend URL
+  // IMPORTANT: Ensure this is set at a global or higher level in your App.js or an axios instance
+  // If it's only here, it will be set every time LoginForm renders.
+  // It's generally better to set axios.defaults.withCredentials = true; once in App.js or main.js
+  axios.defaults.withCredentials = true; 
+  const API_URL = 'http://localhost:8000'; // Make sure this matches your Laravel API URL
 
   useEffect(() => {
-    // No need to load users from localStorage anymore, Laravel handles it
-    // Clear any lingering localStorage prefill data
     localStorage.removeItem('lastSignedUpUsername');
     localStorage.removeItem('lastSignedUp(');
   }, []);
@@ -25,7 +25,7 @@ function LoginForm({ onLogin, onNavigate }) {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pw);
 
   const handleLogin = async () => {
-    setLoginStatus(''); // Clear previous status
+    setLoginStatus(''); // Clear previous status messages
 
     if (!username || !password) {
       setLoginStatus('Please fill in all fields');
@@ -33,59 +33,58 @@ function LoginForm({ onLogin, onNavigate }) {
     }
 
     if (!isValidPassword(password)) {
-      setLoginStatus('Invalid password format'); // Or a more generic "Invalid credentials"
+      setLoginStatus('Invalid password format. Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.');
       return;
     }
 
     try {
-      // 1. Get CSRF cookie first
+      // 1. Fetch CSRF cookie
       await axios.get(`${API_URL}/sanctum/csrf-cookie`);
+      console.log('CSRF cookie fetched successfully.');
 
-      // 2. Send login data
+      // 2. Attempt login
       const response = await axios.post(`${API_URL}/api/login`, {
-        username, // Sending 'username' which Laravel will attempt to match against username or email
-        password,
+        username: username,
+        password: password,
       });
 
-      if (response.status === 204) { // Laravel's default is 204 No Content on success
-        // At this point, the user is authenticated via session cookie
-        // You might want to fetch user details for display or context
-        // >>>>>>>>>> FIX APPLIED HERE <<<<<<<<<<
-        const userResponse = await axios.get(`${API_URL}/api/user`); // Corrected: Added /api/
-        const userData = userResponse.data;
-        setLoginStatus(`Welcome, ${userData.first_name || userData.username}!`);
-        if (onLogin) onLogin(userData); // Pass user data to parent component if needed
+      console.log('Login API Response:', response);
 
-        setTimeout(() => {
-          if (onNavigate) {
-            onNavigate('dashboard');
-          } else {
-            navigate('/dashboard');
-          }
-        }, 1000);
+      // 3. Handle successful login based on status code
+      // Laravel's AuthenticatedSessionController returns 204 No Content for successful session login
+      if (response.status === 204) {
+        setLoginStatus('Welcome, ' + username + '!');
+        onLogin(); // Call onLogin to trigger authentication status check in App.js
+        navigate('/dashboard'); // Navigate to dashboard on successful login
       } else {
-        setLoginStatus('Login failed. Please try again.');
+        // Fallback for unexpected successful status codes (shouldn't happen with 204 for your backend)
+        setLoginStatus('Login failed: Unexpected server response status: ' + response.status);
       }
     } catch (error) {
-      if (error.response) {
-        if (error.response.status === 422 || error.response.status === 401) { // Validation or Unauthorized
-          setLoginStatus('Invalid username or password');
-        } else {
-          setLoginStatus(`Error: ${error.response.data.message || 'Something went wrong.'}`);
-        }
-      } else if (error.request) {
-        setLoginStatus('No response from server. Please check your network connection.');
-      } else {
-        setLoginStatus(`Error: ${error.message}`);
-      }
       console.error('Login error:', error);
+      if (error.response) {
+        if (error.response.status === 422 && error.response.data.errors) {
+          // Handle Laravel validation errors (e.g., 'username field is required', 'auth.failed')
+          const errors = Object.values(error.response.data.errors).flat();
+          setLoginStatus('Login failed: ' + errors.join(' '));
+        } else if (error.response.data && error.response.data.message) {
+          // Handle other specific error messages from the backend
+          setLoginStatus('Login failed: ' + error.response.data.message);
+        } else {
+          // Catch-all for other HTTP errors with a response but no specific message
+          setLoginStatus('Login failed: Server error (HTTP ' + error.response.status + ').');
+        }
+      } else {
+        // Handle network errors (server unreachable, CORS issues before response)
+        setLoginStatus('Login failed: Network error or server unreachable.');
+      }
     }
   };
 
   return (
     <>
       <style>{`
-        /* Your existing CSS styles */
+        /* Updated CSS styles with proper centering */
         .login-page {
           min-height: 100vh;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -94,6 +93,8 @@ function LoginForm({ onLogin, onNavigate }) {
           justify-content: center;
           position: relative;
           overflow: hidden;
+          padding: 20px;
+          box-sizing: border-box;
         }
         .blue-circle {
           position: absolute;
@@ -150,11 +151,12 @@ function LoginForm({ onLogin, onNavigate }) {
           padding: 40px;
           border-radius: 20px;
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-          width: 400px;
+          width: 100%;
+          max-width: 400px;
           position: relative;
           z-index: 10;
         }
-        .form-container h1 {
+        .form-container h2 {
           text-align: center;
           margin-bottom: 30px;
           color: #333;
@@ -240,7 +242,7 @@ function LoginForm({ onLogin, onNavigate }) {
       `}</style>
 
       <div className="login-page">
-        {/* Decorative circles */}
+        {/* Background decorative elements */}
         <div className="blue-circle top-right"></div>
         <div className="blue-circle bottom-left"></div>
         <div className="blue-circle-gradient bottom-left-large"></div>
@@ -248,63 +250,63 @@ function LoginForm({ onLogin, onNavigate }) {
         <div className="small-circle bottom-right-small"></div>
         <div className="small-circle left-center"></div>
 
-        {/* Login card */}
         <div className="form-container">
-          <h1>MerchXpress</h1>
+          <h2>LOGIN</h2>
+          <div className="form-group">
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Username or Email"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
 
-          <div className="input-group">
-            <input
-              type="text"
-              placeholder="Username or Email"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-
-          <div className="input-group password-group">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              className="eye-button"
-              onClick={() => setShowPassword(!showPassword)}
-              type="button"
-            >
-              {showPassword ? '👁️' : '👁️‍🗨️'}
-            </button>
-          </div>
-
-          <div className="account-text">
-            <p>
-              Don't have an account?{' '}
+            <div className="input-group password-group">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <button
-                onClick={() => navigate('/signup')}
+                className="eye-button"
+                onClick={() => setShowPassword(!showPassword)}
                 type="button"
               >
-                SIGN UP
+                {showPassword ? '👁️' : '👁️‍🗨️'}
               </button>
-            </p>
+            </div>
+
+            <div className="account-text">
+              <p>
+                Don't have an account?{' '}
+                <button
+                  onClick={() => navigate('/signup')}
+                  type="button"
+                >
+                  SIGN UP
+                </button>
+              </p>
+            </div>
+
+            <button className="action-button" onClick={handleLogin} type="button">
+              Login
+            </button>
+
+            {loginStatus && (
+              <p
+                className="status-message"
+                style={{ color: loginStatus.includes('Welcome') ? '#27ae60' : '#e74c3c' }}
+              >
+                {loginStatus}
+              </p>
+            )}
           </div>
-
-          <button className="action-button" onClick={handleLogin} type="button">
-            Login
-          </button>
-
-          {loginStatus && (
-            <p
-              className="status-message"
-              style={{ color: loginStatus.includes('Welcome') ? '#27ae60' : '#e74c3c' }}
-            >
-              {loginStatus}
-            </p>
-          )}
         </div>
       </div>
     </>
-  );
+  );  
 }
 
 export default LoginForm;

@@ -1,83 +1,195 @@
 /* COMPONENTS/DASHBOARD/Pages/CartPage.css */
 .cart-page {
   padding: 20px;
+  max-width: 900px; /* Added max-width for better layout */
+  margin: 20px auto; /* Centered the cart */
+  background-color: #f8f9fa; /* Light background for the page */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.cart-page h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 2em;
 }
 
 .empty-cart {
   text-align: center;
-  padding: 40px 0;
+  padding: 50px; /* Increased padding */
   color: #777;
+  background-color: #fff; /* White background for empty cart */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.empty-cart p {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.back-to-market-btn {
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+.back-to-market-btn:hover {
+  background-color: #0056b3;
 }
 
 .cart-items-list {
   list-style: none;
   padding: 0;
+  margin: 0 0 20px 0; /* Adjusted margin */
 }
 
 .cart-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  padding: 15px; /* Increased padding */
+  border: 1px solid #eee; /* Added border */
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 10px; /* Space between items */
+  background-color: #fff; /* White background for each item */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
 }
 
 .cart-item:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #eee; /* Keep border for last child for consistency */
 }
 
 .item-details {
+  display: flex; /* Flex container for image and info */
+  align-items: center;
   flex-grow: 1;
+}
+
+.item-image {
+  width: 60px; /* Fixed width for image */
+  height: 60px; /* Fixed height for image */
+  object-fit: cover; /* Ensures image covers area without distortion */
+  border-radius: 4px; /* Slightly rounded corners for image */
+  margin-right: 15px; /* Space between image and text */
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column; /* Stack name, price, quantity vertically */
 }
 
 .item-name {
   font-weight: bold;
-  margin-right: 10px;
+  font-size: 1.1em;
+  color: #333;
 }
 
 .item-price {
-  color: green;
+  color: #28a745; /* Changed to a more subtle green */
+  margin-top: 5px;
 }
 
 .item-quantity {
   display: flex;
   align-items: center;
+  margin-top: 5px;
 }
 
-.item-quantity button {
+.quantity-input { /* New style for input field */
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+/* Removed item-quantity button styles as quantity is now an input */
+/* .item-quantity button {
   padding: 5px 10px;
   margin: 0 5px;
   cursor: pointer;
-}
+} */
 
 .item-total {
   font-weight: bold;
-  margin-left: 10px;
+  font-size: 1.1em;
+  color: #007bff; /* A prominent color for the total */
+  margin-left: 20px; /* Space from details */
+  min-width: 80px; /* Ensure it doesn't wrap too much */
+  text-align: right;
+}
+
+.item-actions { /* New container for action buttons */
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 8px; /* Space between buttons */
+  margin-left: 20px;
+}
+
+.remove-item, .checkout-item-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.9em;
+  white-space: nowrap; /* Prevent text wrapping on buttons */
 }
 
 .remove-item {
-  background-color: #f44336;
+  background-color: #dc3545; /* Bootstrap danger red */
   color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-left: 10px;
+}
+
+.remove-item:hover {
+  background-color: #c82333;
+}
+
+.checkout-item-btn { /* New style for individual checkout button */
+  background-color: #28a745; /* Bootstrap success green */
+  color: white;
+}
+
+.checkout-item-btn:hover {
+  background-color: #218838;
 }
 
 .cart-summary {
+  display: flex; /* Use flex for summary */
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-top: 2px solid #e9ecef; /* A light border for separation */
   margin-top: 20px;
-  text-align: right;
-  font-size: 1.2em;
+  background-color: #e9ecef; /* Light grey background for summary */
+  border-radius: 8px;
 }
 
-.checkout-button {
-  background-color: #4CAF50;
+.cart-summary strong {
+  font-size: 1.3em;
+  color: #333;
+}
+
+.checkout-button { /* This style is for the "Proceed to Checkout All Items" button if you keep it */
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 1em;
-  margin-left: 20px;
+  font-size: 1.1em;
+  transition: background-color 0.2s ease;
+}
+
+.checkout-button:hover {
+  background-color: #0056b3;
 }
